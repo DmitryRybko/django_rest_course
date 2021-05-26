@@ -21,14 +21,20 @@ from todoapp.views import ProjectModelViewSet, ToDoListModelViewSet
 
 
 router = DefaultRouter()
-router.register('users', UserModelViewSet)
+router.register('users', UserModelViewSet, basename='users')
 router.register('projects', ProjectModelViewSet)
 router.register('todolist', ToDoListModelViewSet)
 
+user_detail = UserModelViewSet.as_view({
+    'get': 'retrieve',
+    'patch': 'partial_update',
+})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
 
+    path('api/users/<int:pk>/', user_detail, name='customuser-detail')
 ]
+
