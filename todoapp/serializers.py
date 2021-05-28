@@ -4,12 +4,16 @@ from .models import Project, ToDoList
 
 class ProjectModelSerializer(serializers.HyperlinkedModelSerializer):
 
+    users = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Project
         fields = ['id', 'name', 'users', 'url']
 
 
-class ToDoListModelSerializer(serializers.HyperlinkedModelSerializer):
+class ToDoListModelSerializer(serializers.ModelSerializer):
+
+    created_by = serializers.StringRelatedField()
 
     class Meta:
         model = ToDoList
