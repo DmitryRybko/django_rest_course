@@ -1,4 +1,5 @@
 from django_filters import rest_framework as filters
+from rest_framework import permissions
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -22,6 +23,7 @@ class ProjectModelViewSet(ModelViewSet):
 
 
 class ToDoListModelViewSet(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = ToDoList.objects.all()
     serializer_class = ToDoListModelSerializer
     filterset_fields = {'project': ['exact'], 'created': ['gte', 'lte']}
