@@ -18,3 +18,10 @@ class ToDoListModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDoList
         fields = '__all__'
+
+
+# for tests
+class ToDoListSerializerBase(serializers.ModelSerializer):
+    class Meta:
+        model = ToDoList
+        fields = '__all__'
