@@ -8,10 +8,6 @@ from .models import CustomUser
 from .serializers import UserModelSerializer, UserModelSerializerFull
 
 
-# class UserModelViewSet(ModelViewSet):
-#     queryset = CustomUser.objects.all()
-#     serializer_class = UserModelSerializer
-
 class UserModelViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin,
                        mixins.UpdateModelMixin, viewsets.GenericViewSet):
 
@@ -22,17 +18,3 @@ class UserModelViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin,
         if self.request.version == '2.0':
             return UserModelSerializerFull
         return UserModelSerializer
-
-    # renderer_classes = [JSONRenderer]
-
-    # def list(self, request):
-    #     users = CustomUser.objects.all()
-    #     context = {'request': request}
-    #     serializer = UserModelSerializer(users, many=True, context=context)
-    #     return Response(serializer.data)
-    #
-    # def retrieve(self, request, pk=None):
-    #     user = get_object_or_404(CustomUser, pk=pk)
-    #     context = {'request': request}
-    #     serializer = UserModelSerializer(user, context=context)
-    #     return Response(serializer.data)
