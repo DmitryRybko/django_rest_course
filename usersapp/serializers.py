@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import CustomUser
 
 
-class UserModelSerializer(serializers.HyperlinkedModelSerializer):
+class UserModelSerializer(serializers.ModelSerializer):
     projects = serializers.StringRelatedField(many=True)
 
     def create(self, validated_data):

@@ -4,6 +4,9 @@ const User = ({user}) => {
     return (
         <tr>
             <td>
+                {user.id}
+            </td>
+            <td>
                 {user.email}
             </td>
             <td>
@@ -19,6 +22,9 @@ const User = ({user}) => {
 const UserList = ({users}) => {
     return (
         <table>
+            <th>
+                ID
+            </th>
             <th>
                 E-mail
             </th>
