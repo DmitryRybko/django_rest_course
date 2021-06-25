@@ -45,8 +45,11 @@ class App extends React.Component {
     }
 
     createProject(name, users) {
+
+        console.log([users])
         const headers = this.get_headers()
-        const data = {name: name, users: users}
+        const data = {name: name, users: [users]}
+        console.log(data)
         axios.post(`http://127.0.0.1:8000/api/projects/`, data, {headers})
             .then(response => {
                 let new_project = response.data
@@ -172,19 +175,20 @@ class App extends React.Component {
 
             <nav className="navbar navbar-expand-sm bg-primary navbar-dark">
                 <ul className="navbar-nav">
-                    <li className="nav-item active">
+                    <li key="uniqueId1" className="nav-item active">
                         <a className="nav-link" href="/">USER LIST |</a>
                     </li>
-                    <li className="nav-item active">
+                    <li key="uniqueId2" className="nav-item active">
                         <a className="nav-link" href="/projects">PROJECTS |</a>
                     </li>
-                    <li className="nav-item active">
+                    <li key="uniqueId3" className="nav-item active">
                         <a className="nav-link" href="/todos">TODOs |</a>
                     </li>
                     {this.is_authenticated () ?
-                       <div><li className="nav-item active">
-                           <a className="nav-link" href='#'>Logged in as {this.state.current_user} | </a></li>
-                       <li className="nav-item active"><button onClick={() => this.logout()}>Logout</button></li></div> :
+                       <div>
+                           <li key="uId1" className="nav-item active">
+                           <a className="nav-link" href='/'>Logged in as {this.state.current_user} | </a></li>
+                       <li key="uId2" className="nav-item active"><button onClick={() => this.logout()}>Logout</button></li></div> :
                        <a className="nav-link" href='/login'>Login |</a>}
 
                 </ul>

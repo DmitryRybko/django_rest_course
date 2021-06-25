@@ -17,12 +17,18 @@ const ProjectList = ({projects, deleteProject}) => {
     return (
         <div>
         <table width={"100%"}>
-            <th>Project ID</th>
-            <th>Project Name</th>
-            <th>Users</th>
-            <th>Direct Link to API</th>
-            <th></th>
-            {projects.map((project) => <Project project={project} deleteProject={deleteProject} />)}
+            <thead>
+                <tr>
+                    <th>Project ID</th>
+                        <th>Project Name</th>
+                        <th>Users</th>
+                        <th>Direct Link to API</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {projects.map((project) => <Project key={project.id} project={project} deleteProject={deleteProject} />)}
+            </tbody>
         </table>
         <Link to='/projects/create'>Create</Link>
         </div>

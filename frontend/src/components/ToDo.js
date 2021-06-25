@@ -35,7 +35,7 @@ const ToDoList = ({todos, deleteToDo}) => {
             {todos.map((todo) => <ToDo todo={todo} deleteToDo={deleteToDo}/>)}
         </table>
 
-        <Link to='/todos/create'>Create new ToDo</Link>
+        <Link to='/todos/create'>Create new</Link>
 
         </div>
     )
