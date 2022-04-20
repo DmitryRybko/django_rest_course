@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import CustomUser
 
 
-class UserModelSerializer(serializers.ModelSerializer):
+class UserModelSerializer(serializers.HyperlinkedModelSerializer):
     projects = serializers.StringRelatedField(many=True)
 
     def create(self, validated_data):
@@ -14,4 +14,4 @@ class UserModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = ['id', 'url', 'email', 'first_name', 'last_name', 'projects', ]
