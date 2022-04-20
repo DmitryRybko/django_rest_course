@@ -17,6 +17,11 @@ class Header extends React.Component
                     <li className="nav-item active">
                         <a className="nav-link" href="/todos">TODOs |</a>
                     </li>
+                    <li>
+                        {this.props.is_authenticated ?
+                            <button onClick={()=>this.props.logout()}>Logout</button> :
+                            <a className="nav-link" href='/login'>Login|</a>}
+                    </li>
                 </ul>
             </nav>
 
