@@ -7,7 +7,7 @@ from .serializers import ProjectModelSerializer, ToDoListModelSerializer
 
 
 class TaskLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 2
+    default_limit = 20
 
 
 class ProjectFilter(filters.FilterSet):

@@ -22,6 +22,7 @@ class ToDoList(models.Model):
     due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
     project = models.ForeignKey(Project, on_delete=models.CASCADE, default=1)
     completed = models.BooleanField(default=False)
+    created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
 
     class Meta:
         ordering = ["-created"]
