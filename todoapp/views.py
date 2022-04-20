@@ -4,7 +4,7 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from .models import Project, ToDoList
-from .serializers import ProjectModelSerializer, ToDoListModelSerializer
+from .serializers import ProjectModelSerializer, ToDoListModelSerializer, ToDoListSerializerBase
 
 
 class TaskLimitOffsetPagination(LimitOffsetPagination):
@@ -23,7 +23,7 @@ class ProjectModelViewSet(ModelViewSet):
 
 
 class ToDoListModelViewSet(ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = ToDoList.objects.all()
     serializer_class = ToDoListModelSerializer
     filterset_fields = {'project': ['exact'], 'created': ['gte', 'lte']}
@@ -36,3 +36,8 @@ class ToDoListModelViewSet(ModelViewSet):
         task.save()
 
         return Response({"message": "task completed"})
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return ToDoListModelSerializer
+        return ToDoListSerializerBase
